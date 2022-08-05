@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+
+{% block document_title %}
+<title>Your Courses - {{ request.user.username }} | DevClubLMS</title>
+{% endblock %}
+
+{% block sidebar %}
+{% include 'instructor/sidebar.html' %}
+{% endblock %}
+
+
+{% block main %}
+<div class="display-4">
+  {{ course.title }}
+</div>
+
+<div class="h6">
+  {% if course.synopsis %}
+  {{ course.synopsis }}
+  {% else %}
+  ---
+  {% endif %}
+</div>
+<hr>
+
+<div>
+  <h4>Course settings</h4>
+  <div class="d-flex justify-content-between">
+    <p>Registration status: {% if course.registration_open %}<span class="text-bg-success p-1">OPEN{% else %}<span class="text-bg-danger p-1">CLOSED{% endif %}</span></p>
+    {% if course.registration_open %}
+    <a href="{% url 'course:closeRegistration' course.id %}" class="btn btn-primary">Close registration</a>
+    {% else %}
+    <a href="{% url 'course:openRegistration' course.id %}" class="btn btn-primary">Open registration</a>
+    {% endif %}
+  </div>
+  <div class="d-flex justify-content-between">
+    <p>Archive status: {% if course.archived == False %}<span class="text-bg-success p-1">NOT ARCHIVED{% else %}<span class="text-bg-danger p-1">ARCHIVED{% endif %}</span></p>
+    {% if course.archived %}
+    <a href="{% url 'instructor:unsetArchive' course.id %}" class="btn btn-primary">Unarchive</a>
+    {% else %}
+    <a href="{% url 'instructor:setArchive' course.id %}" class="btn btn-primary">Archive</a>
+    {% endif %}
+  </div>
+
+</div>
+
+{% endblock %}

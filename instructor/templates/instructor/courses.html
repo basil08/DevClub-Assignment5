@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+
+{% block document_title %}
+<title>Your Courses - {{ request.user.username }} | DevClubLMS</title>
+{% endblock %}
+
+{% block sidebar %}
+{% include 'instructor/sidebar.html' %}
+{% endblock %}
+
+
+{% block main %}
+<ul>
+  {% for course in courses %}
+  <li>{{ course.title }}</li>
+  {% endfor %}
+</ul>
+{% endblock %}

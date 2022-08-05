@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block document_title %}
+<title>Dashboard - {{ request.user.username }} | DevClubLMS</title>
+{% endblock %}
+
+{% block sidebar %}
+{% include 'student/sidebar.html' %}
+{% endblock %}
+
+
+{% block main %}
+This is the dashboard
+{% endblock %}

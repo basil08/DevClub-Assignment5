@@ -1,0 +1,28 @@
+<div class="card mb-2">
+  <div class="card-body">
+    <a href="{% url 'instructor:coursePage' course.id %}">
+      <h3 class="card-title">{{ course.code }} | {{ course.title }}</h3>
+    </a>
+    <p class="card-text text-muted">{% if course.synopsis %}{{ course.synopsis }}{% else %}---{% endif %}</p>
+  </div>
+  <div class="card-footer text-muted">
+    <div class="d-flex justify-content-between">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="#000000" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><circle cx="128" cy="96" r="64" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-width="16"></circle><path d="M31,216a112,112,0,0,1,194,0" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path></svg>
+        {{ course.students.count }}
+      </div>
+      <div>
+        Archived: <span class="text-bg-primary p-2">{{ course.archived }} </span>
+      </div>
+        <!-- {% if course.archived == True %}
+          <a class="btn btn-primary" href="{% url 'instructor:unsetArchive' course.id %}">Unarchive</a>
+        {% else %}
+          <a class="btn btn-primary" href="{% url 'instructor:setArchive' course.id %}">Archive</a>
+        {% endif %} -->
+      <button class="btn btn-danger">Delete</button>
+    </div>
+  </div>
+
+  </div>
+
+</div>

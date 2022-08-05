@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+{% block document_title %}
+<title>Dashboard - {{ request.user.username }} - DevclubLMS</title>
+{% endblock %}
+
+{% block sidebar %}
+{% include 'instructor/sidebar.html' %}
+{% endblock %}
+
+
+{% block main %}
+
+<div class="display-5">
+  <p>Hi, {{ request.user.first_name|add:" " |add:request.user.last_name }}!</p>
+</div>
+
+<hr />
+<div class="container">
+  <div class="h4">
+    <p>Your Courses: {{ courses.count }}</p>
+  </div>
+    {% for course in courses %}
+    {% include 'instructor/course-card.html' with course=course %}
+    {% endfor %}
+</div>
+<hr />
+<div class="container">
+  <div class="h4">
+    <p>Archived: {{ archived_courses.count }}</p>
+  </div>
+    {% for course in archived_courses %}
+    {% include 'instructor/course-card.html' with course=course %}
+    {% endfor %}
+</div>
+
+
+{% endblock %}
